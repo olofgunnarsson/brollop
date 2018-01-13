@@ -59,8 +59,8 @@ void function (window, document) {
             "categories": [],
             "tWidth": 75,
             "tHeight": 75,
-            "eWidth": 0,
-            "eHeight": 0
+            "eWidth": 1024,
+            "eHeight": 1024
         };
         console.info("Added image");
         return image;
