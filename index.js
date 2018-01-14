@@ -4,8 +4,8 @@ void function (window, document) {
 
     var galleryData = {
         options: {
-            showCount: false,
-            searchFilter: true,
+            showCount: true,
+            searchFilter: false,
             categoriesFilter: false,
             showNone: true,
             showOthers: true
