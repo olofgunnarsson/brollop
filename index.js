@@ -6,9 +6,10 @@ void function (window, document) {
         options: {
             showCount: true,
             searchFilter: false,
-            categoriesFilter: false,
+            categoriesFilter: true,
             showNone: true,
-            showOthers: true
+            showOthers: true,
+            showLabels: 'none'
         }
     };
 
@@ -34,8 +35,8 @@ void function (window, document) {
             api_key: '1fc6ba10b6eaa4bc658b63fcc138d5b0',
             method: 'flickr.people.getPublicPhotos',
             format: 'json',
-//        user_id: '154685165@N08',
-            user_id: '78621811@N06',
+            user_id: '154685165@N08',
+            // user_id: '78621811@N06',
             page: page,
             per_page: 30
         };
@@ -50,17 +51,32 @@ void function (window, document) {
     }
 
     function renderPhoto(photo) {
-        var thumbSrc = buildFlickrPhotoUrl(photo, '_n');
+        var thumbSrc = buildFlickrPhotoUrl(photo, '');
         var orgSrc = buildFlickrPhotoUrl(photo, '_b');
+        var regex = /([0-9]*)x([0-9]*)/.exec(photo.title);
+        var width = regex[1];
+        var height = regex[2];
+        var tHeight = 100;
+        var tWidth = 100;
+
+        if (width > height) {
+            tHeight = 60;
+            tWidth = 60 * (width / height);
+        } else {
+            tWidth = 60;
+            tHeight = 60 * (height / width);
+
+        }
+
         var image = {
             "thumbnail": thumbSrc,
             "enlarged": orgSrc,
-            "title": photo.title,
-            "categories": [],
-            "tWidth": 75,
-            "tHeight": 75,
-            "eWidth": 1024,
-            "eHeight": 1024
+            "title": "",
+            "categories": [{"title": "Middag"}],
+            "tWidth": tWidth,
+            "tHeight": tHeight,
+            "eWidth": width ? width : 1024,
+            "eHeight": height ? height : 1024
         };
         console.info("Added image");
         return image;
