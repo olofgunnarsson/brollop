@@ -26,7 +26,7 @@
 .natural-gallery .natural-gallery-categories input[type=checkbox] ~ .label svg,
 .natural-gallery .natural-gallery-noresults svg {
     color: #999999 !important;
-    fill: currentColor !important;
+    fill: #999999 !important;
 }
 
 /* Normal */
@@ -57,16 +57,8 @@
     background-color: #eeeeee !important;
 }
 
-.natural-gallery .figure.selected .selectBtn {
-    color: orange !important;
-}
-
-.natural-gallery .button {
+.natural-gallery .button,
+.natural-gallery .figure[href] .title {
     background: rgb(0, 137, 224) !important;
     border-top: 1px solid #45a8e0;
-}
-
-.natural-gallery .button:hover {
-    background: rgb(0, 103, 187) !important;
-
 }

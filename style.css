@@ -1,6 +1,9 @@
 body {
     background-color: #e9e9e9;
-    padding-bottom: 60px
+}
+
+.natural-gallery {
+    margin-bottom:100px;
 }
 
 @font-face {
@@ -11,3 +14,5 @@ body {
 .text-center {
     font-family: Neutra, serif
 }
+
+
