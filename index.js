@@ -24,6 +24,8 @@ function more() {
     search(1);
 }
 
+var photolinks = []
+
 function search(page) {
     var query = {
         api_key: '1fc6ba10b6eaa4bc658b63fcc138d5b0',
@@ -40,9 +42,12 @@ function search(page) {
 
 function renderPhotos(data) {
     var pages = data.photos.pages;
-
-    window.naturalGalleries[0].images = data.photos.photo.map(renderPhoto);
-
+    photolinks = photolinks.concat(data.photos.photo);
+    if (pages === data.photos.page) {
+        window.naturalGalleries[0].images = photolinks.map(renderPhoto);
+    } else {
+        search(data.photos.page + 1)
+    }
 }
 
 var categoriesStaringe = [
