@@ -1,3 +1,5 @@
+"use strict";
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('serviceworker.js');
 }
@@ -43,15 +45,69 @@ function renderPhotos(data) {
 
 }
 
+var categoriesStaringe = [
+    {
+        key: "GRATULATIONER",
+        id: 1,
+        name: "Gratulationer"
+    },
+    {
+        key: "VIGSEL",
+        id: 2,
+        name: "Vigsel"
+    },
+    {
+        key: "MINGEL",
+        id: 3,
+        name: "Mingel"
+    },
+    {
+        key: "BRÖLLOPSMIDDAG",
+        id: 4,
+        name: "Bröllopsmiddag"
+    },
+    {
+        key: "BRUDPAR",
+        id: 5,
+        name: "Brudpar"
+    },
+    {
+        key: "BRUDFÖLJE",
+        id: 6,
+        name: "Brudfölje"
+    },
+    {
+        key: "FOTOBÅS",
+        id: 7,
+        name: "Fotobås"
+    },
+    {
+        key: "GÄSTER",
+        id: 8,
+        name: "äster"
+    }
+];
+
+
+function getCategoryForPic(groups) {
+    var res = [];
+    for (var i = 0; i < groups.length; i++) {
+        for (var j = 0; j < categoriesStaringe.length; j++) {
+            if (groups[i] === categoriesStaringe[j].key)
+                res.push({title: categoriesStaringe[j].name, id: categoriesStaringe[j].id});
+
+        }
+    }
+    return res;
+}
+
 function renderPhoto(photo) {
     var thumbSrc = buildFlickrPhotoUrl(photo, '_n');
     var orgSrc = buildFlickrPhotoUrl(photo, '_b');
     var regex = /\[(.*)]\.[0-9]*\.([0-9]*)x([0-9]*)/.exec(photo.title);
     var groups = regex[1]
-        .split(",")
-        .map(function (value) {
-            return {"title": value}
-        });
+        .split(",");
+
     var width = regex[3];
     var height = regex[2];
     var tHeight = 100;
@@ -66,11 +122,12 @@ function renderPhoto(photo) {
 
     }
 
+    var categoryForPic = getCategoryForPic(groups);
     var image = {
         "thumbnail": thumbSrc,
         "enlarged": orgSrc,
         "title": "",
-        "categories": groups,
+        "categories": categoryForPic,
         "tWidth": tWidth,
         "tHeight": tHeight,
         "eWidth": width ? width : 1024,
