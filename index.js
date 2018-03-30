@@ -40,9 +40,6 @@ function search(page) {
 
 function renderPhotos(data) {
     window.naturalGalleries[0].images = data.photos.photo.map(renderPhoto);
-
-    // gallery.appendItems(map);
-
 }
 
 var categoriesStaringe = [
@@ -108,8 +105,8 @@ function renderPhoto(photo) {
     var groups = regex[1]
         .split(",");
 
-    var width = regex[3];
-    var height = regex[2];
+    var width = regex[2];
+    var height = regex[3];
     var tHeight = 100;
     var tWidth = 100;
 
@@ -133,7 +130,6 @@ function renderPhoto(photo) {
         "eWidth": width ? width : 1024,
         "eHeight": height ? height : 1024
     };
-    console.info("Added image");
     return image;
 }
 
