@@ -32,14 +32,17 @@ function search(page) {
         user_id: '154685165@N08',
         // user_id: '78621811@N06',
         page: page,
-        per_page: 30
+        per_page: 100
     };
     var url = 'https://api.flickr.com/services/rest';
     jsonp(url, query, renderPhotos);
 }
 
 function renderPhotos(data) {
+    var pages = data.photos.pages;
+
     window.naturalGalleries[0].images = data.photos.photo.map(renderPhoto);
+
 }
 
 var categoriesStaringe = [
