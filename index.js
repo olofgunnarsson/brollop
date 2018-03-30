@@ -32,7 +32,6 @@ function search(page) {
         method: 'flickr.people.getPublicPhotos',
         format: 'json',
         user_id: '154685165@N08',
-        // user_id: '78621811@N06',
         page: page,
         per_page: 100
     };
@@ -67,7 +66,7 @@ var categoriesStaringe = [
         name: "Mingel"
     },
     {
-        key: 'BRÖLLOPSMIDDAG',
+        key: 'BRÖLLOPSMIDDAG',
         id: 4,
         name: "Bröllopsmiddag"
     },
@@ -82,7 +81,7 @@ var categoriesStaringe = [
         name: "Brudfölje"
     },
     {
-        key: "FOTOBÅS",
+        key: "FOTOBÅS",
         id: 7,
         name: "Fotobås"
     },
@@ -103,6 +102,8 @@ function getCategoryForPic(groups) {
 
         }
     }
+    if (res.length === 0)
+        console.info("ndnsdankld");
     return res;
 }
 
