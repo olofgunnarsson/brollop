@@ -1,7 +1,11 @@
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('serviceworker.js');
+}
+
 window.naturalGalleries = window.naturalGalleries || [];
 var naturalGallery = {
     id: 'gallery',
-    options : {
+    options: {
         showCount: true,
         searchFilter: false,
         categoriesFilter: true,
@@ -40,10 +44,15 @@ function renderPhotos(data) {
 }
 
 function renderPhoto(photo) {
-    var thumbSrc = buildFlickrPhotoUrl(photo, '');
+    var thumbSrc = buildFlickrPhotoUrl(photo, '_n');
     var orgSrc = buildFlickrPhotoUrl(photo, '_b');
-    var regex = /([0-9]*)x([0-9]*)/.exec(photo.title);
-    var width = regex[1];
+    var regex = /\[(.*)]\.[0-9]*\.([0-9]*)x([0-9]*)/.exec(photo.title);
+    var groups = regex[1]
+        .split(",")
+        .map(function (value) {
+            return {"title": value}
+        });
+    var width = regex[3];
     var height = regex[2];
     var tHeight = 100;
     var tWidth = 100;
@@ -61,7 +70,7 @@ function renderPhoto(photo) {
         "thumbnail": thumbSrc,
         "enlarged": orgSrc,
         "title": "",
-        "categories": [{"title": "Middag"}],
+        "categories": groups,
         "tWidth": tWidth,
         "tHeight": tHeight,
         "eWidth": width ? width : 1024,
