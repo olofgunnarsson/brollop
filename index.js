@@ -62,7 +62,7 @@ var categoriesStaringe = [
         name: "Mingel"
     },
     {
-        key: "BRÖLLOPSMIDDAG",
+        key: 'BRÖLLOPSMIDDAG',
         id: 4,
         name: "Bröllopsmiddag"
     },
@@ -82,9 +82,9 @@ var categoriesStaringe = [
         name: "Fotobås"
     },
     {
-        key: "GÄSTER",
+        key: "GÄSTER",
         id: 8,
-        name: "äster"
+        name: "Gäster"
     }
 ];
 
